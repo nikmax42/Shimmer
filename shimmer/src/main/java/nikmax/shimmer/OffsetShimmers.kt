@@ -72,7 +72,7 @@ private fun HorizontalWavePreview() {
             Modifier
                 .size(100.dp)
                 .shimmerBackground(
-                    Shimmer.OffsetShimmer.HorizontalWave()
+                    ShimmerEffect.OffsetShimmerEffect.HorizontalWave()
                 )
         )
     }

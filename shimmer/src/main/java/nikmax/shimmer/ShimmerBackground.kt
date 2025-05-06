@@ -5,17 +5,17 @@ import androidx.compose.ui.Modifier
 /**
  * Animated shimmer background.
  *
- * @param shimmer
+ * @param shimmerEffect
  * */
-fun Modifier.shimmerBackground(shimmer: Shimmer = DEFAULT_SHIMMER): Modifier {
-    return when (shimmer) {
-        is Shimmer.OffsetShimmer.HorizontalWave -> this.horizontalWave(
-            backgroundColor = shimmer.backgroundColor,
-            waveColor = shimmer.waveColor
+fun Modifier.shimmerBackground(shimmerEffect: ShimmerEffect = DEFAULT_SHIMMER_EFFECT): Modifier {
+    return when (shimmerEffect) {
+        is ShimmerEffect.OffsetShimmerEffect.HorizontalWave -> this.horizontalWave(
+            backgroundColor = shimmerEffect.backgroundColor,
+            waveColor = shimmerEffect.waveColor
         )
-        is Shimmer.ColorChangeShimmer.ColorPulsation -> this.colorPulsation(
-            firstColor = shimmer.firstColor,
-            secondColor = shimmer.secondColor
+        is ShimmerEffect.ColorChangeShimmerEffect.ColorPulsation -> this.colorPulsation(
+            firstColor = shimmerEffect.firstColor,
+            secondColor = shimmerEffect.secondColor
         )
     }
 }

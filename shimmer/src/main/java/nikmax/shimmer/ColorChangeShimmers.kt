@@ -61,7 +61,7 @@ private fun ColorPulsationPreview() {
             Modifier
                 .size(100.dp)
                 .shimmerBackground(
-                    Shimmer.ColorChangeShimmer.ColorPulsation()
+                    ShimmerEffect.ColorChangeShimmerEffect.ColorPulsation()
                 )
         )
     }

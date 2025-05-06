@@ -2,21 +2,21 @@ package nikmax.shimmer
 
 import androidx.compose.ui.graphics.Color
 
-val DEFAULT_SHIMMER = Shimmer.ColorChangeShimmer.ColorPulsation()
+val DEFAULT_SHIMMER_EFFECT = ShimmerEffect.ColorChangeShimmerEffect.ColorPulsation()
 val DEFAULT_COLOR = Color.Unspecified
 
-sealed interface Shimmer {
-    sealed interface OffsetShimmer : Shimmer {
+sealed interface ShimmerEffect {
+    sealed interface OffsetShimmerEffect : ShimmerEffect {
         data class HorizontalWave(
             val backgroundColor: Color = DEFAULT_COLOR,
             val waveColor: Color = DEFAULT_COLOR
-        ) : OffsetShimmer
+        ) : OffsetShimmerEffect
     }
     
-    sealed interface ColorChangeShimmer : Shimmer {
+    sealed interface ColorChangeShimmerEffect : ShimmerEffect {
         data class ColorPulsation(
             val firstColor: Color = DEFAULT_COLOR,
             val secondColor: Color = DEFAULT_COLOR
-        ) : ColorChangeShimmer
+        ) : ColorChangeShimmerEffect
     }
 }
