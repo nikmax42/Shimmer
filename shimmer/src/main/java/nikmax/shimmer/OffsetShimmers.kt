@@ -36,10 +36,10 @@ internal fun Modifier.horizontalWave(
     )
 ): Modifier = composed {
     val backgroundColor =
-        if (backgroundColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceContainer
+        if (backgroundColor == Constants.DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceContainer
         else backgroundColor
     val waveColor =
-        if (waveColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceDim
+        if (waveColor == Constants.DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceDim
         else waveColor
     
     var size by remember { mutableStateOf(IntSize.Zero) }

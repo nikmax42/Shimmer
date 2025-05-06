@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
  *
  * @param shimmerEffect
  * */
-fun Modifier.shimmerBackground(shimmerEffect: ShimmerEffect = DEFAULT_SHIMMER_EFFECT): Modifier {
+fun Modifier.shimmerBackground(shimmerEffect: ShimmerEffect = Constants.DEFAULT_SHIMMER_EFFECT): Modifier {
     return when (shimmerEffect) {
         is ShimmerEffect.OffsetShimmerEffect.HorizontalWave -> this.horizontalWave(
             backgroundColor = shimmerEffect.backgroundColor,

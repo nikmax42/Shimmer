@@ -36,10 +36,10 @@ internal fun Modifier.colorPulsation(
     )
 ): Modifier = composed {
     val backgroundColor =
-        if (firstColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceContainer
+        if (firstColor == Constants.DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceContainer
         else firstColor
     val activeColor =
-        if (secondColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceDim
+        if (secondColor == Constants.DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceDim
         else secondColor
     var size by remember { mutableStateOf(IntSize.Zero) }
     val transition = rememberInfiniteTransition()
