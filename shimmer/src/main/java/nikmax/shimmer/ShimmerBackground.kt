@@ -1,8 +1,6 @@
 package nikmax.shimmer
 
 import androidx.compose.ui.Modifier
-import nikmax.shimmer.Shimmers.horizontalWave
-
 
 /**
  * Animated shimmer background.
@@ -14,6 +12,10 @@ fun Modifier.shimmerBackground(shimmer: Shimmer = DEFAULT_SHIMMER): Modifier {
         is Shimmer.OffsetShimmer.HorizontalWave -> this.horizontalWave(
             backgroundColor = shimmer.backgroundColor,
             waveColor = shimmer.waveColor
+        )
+        is Shimmer.ColorChangeShimmer.ColorPulsation -> this.colorPulsation(
+            firstColor = shimmer.firstColor,
+            secondColor = shimmer.secondColor
         )
     }
 }

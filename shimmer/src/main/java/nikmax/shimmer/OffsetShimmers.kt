@@ -23,44 +23,42 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 
-internal object Shimmers {
-    
-    fun Modifier.horizontalWave(
-        backgroundColor: Color = Color.Black,
-        waveColor: Color = Color.White
-    ): Modifier = composed {
-        var size by remember { mutableStateOf(IntSize.Zero) }
-        val transition = rememberInfiniteTransition()
-        val startOffsetX by transition.animateFloat(
-            initialValue = -2 * size.width.toFloat(),
-            targetValue = 2 * size.width.toFloat(),
-            animationSpec = InfiniteRepeatableSpec<Float>(
-                tween(
-                    durationMillis = 1000,
-                    delayMillis = 1500,
-                    easing = LinearEasing
-                )
-            )
+internal fun Modifier.horizontalWave(
+    backgroundColor: Color,
+    waveColor: Color,
+    animationSpec: InfiniteRepeatableSpec<Float> = InfiniteRepeatableSpec<Float>(
+        tween(
+            durationMillis = 1500,
+            delayMillis = 1500,
+            easing = LinearEasing
         )
-        background(
-            brush = Brush.linearGradient(
-                colors = listOf(
-                    backgroundColor,
-                    waveColor,
-                    backgroundColor,
-                ),
-                start = Offset(x = startOffsetX, y = 0f),
-                end = Offset(x = startOffsetX + size.width.toFloat(), y = 0f)
-            )
-        ).onGloballyPositioned {
-            size = it.size
-        }
+    )
+): Modifier = composed {
+    var size by remember { mutableStateOf(IntSize.Zero) }
+    val transition = rememberInfiniteTransition()
+    val startOffsetX by transition.animateFloat(
+        initialValue = -2 * size.width.toFloat(),
+        targetValue = 2 * size.width.toFloat(),
+        animationSpec = animationSpec
+    )
+    background(
+        brush = Brush.linearGradient(
+            colors = listOf(
+                backgroundColor,
+                waveColor,
+                backgroundColor,
+            ),
+            start = Offset(x = startOffsetX, y = 0f),
+            end = Offset(x = startOffsetX + size.width.toFloat(), y = 0f)
+        )
+    ).onGloballyPositioned {
+        size = it.size
     }
 }
 
 @Preview
 @Composable
-private fun Preview() {
+private fun HorizontalWavePreview() {
     Box(
         Modifier
             .size(100.dp)
