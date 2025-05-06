@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun ShimmerBox(
     modifier: Modifier,
-    shimmerEffect: ShimmerEffect = Constants.DEFAULT_SHIMMER_EFFECT
+    shimmerEffect: ShimmerEffect = ShimmerEffect.ColorChangeShimmerEffect.ColorPulsation()
 ) {
     Box(modifier.shimmerBackground(shimmerEffect))
 }
