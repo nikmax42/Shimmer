@@ -9,6 +9,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -27,18 +28,24 @@ internal fun Modifier.colorPulsation(
     secondColor: Color,
     animationSpec: InfiniteRepeatableSpec<Color> = InfiniteRepeatableSpec<Color>(
         animation = tween(
-            durationMillis = 1000,
-            delayMillis = 250,
+            durationMillis = 1500,
+            delayMillis = 500,
             easing = LinearEasing
         ),
         repeatMode = RepeatMode.Reverse
     )
 ): Modifier = composed {
+    val backgroundColor =
+        if (firstColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceContainer
+        else firstColor
+    val activeColor =
+        if (secondColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceDim
+        else secondColor
     var size by remember { mutableStateOf(IntSize.Zero) }
     val transition = rememberInfiniteTransition()
     val animatedColor by transition.animateColor(
-        initialValue = firstColor,
-        targetValue = secondColor,
+        initialValue = backgroundColor,
+        targetValue = activeColor,
         animationSpec = animationSpec
     )
     background(color = animatedColor).onGloballyPositioned {
@@ -49,11 +56,13 @@ internal fun Modifier.colorPulsation(
 @Preview
 @Composable
 private fun ColorPulsationPreview() {
-    Box(
-        Modifier
-            .size(100.dp)
-            .shimmerBackground(
-                Shimmer.ColorChangeShimmer.ColorPulsation()
-            )
-    )
+    ShimmerPreviewLayout {
+        Box(
+            Modifier
+                .size(100.dp)
+                .shimmerBackground(
+                    Shimmer.ColorChangeShimmer.ColorPulsation()
+                )
+        )
+    }
 }

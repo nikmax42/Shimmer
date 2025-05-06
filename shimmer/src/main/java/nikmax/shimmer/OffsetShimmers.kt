@@ -8,6 +8,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -34,6 +35,13 @@ internal fun Modifier.horizontalWave(
         )
     )
 ): Modifier = composed {
+    val backgroundColor =
+        if (backgroundColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceContainer
+        else backgroundColor
+    val waveColor =
+        if (waveColor == DEFAULT_COLOR) MaterialTheme.colorScheme.surfaceDim
+        else waveColor
+    
     var size by remember { mutableStateOf(IntSize.Zero) }
     val transition = rememberInfiniteTransition()
     val startOffsetX by transition.animateFloat(
@@ -59,11 +67,13 @@ internal fun Modifier.horizontalWave(
 @Preview
 @Composable
 private fun HorizontalWavePreview() {
-    Box(
-        Modifier
-            .size(100.dp)
-            .shimmerBackground(
-                Shimmer.OffsetShimmer.HorizontalWave()
-            )
-    )
+    ShimmerPreviewLayout {
+        Box(
+            Modifier
+                .size(100.dp)
+                .shimmerBackground(
+                    Shimmer.OffsetShimmer.HorizontalWave()
+                )
+        )
+    }
 }
